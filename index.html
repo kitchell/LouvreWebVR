@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Musee du Louvre Web VR</title>
+    <meta name="description" content="Musee du Louvre WebVR">
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.1.0/dist/aframe-extras.min.js"></script>
+<!--    <script src="https://unpkg.com/aframe-simple-sun-sky@^1.2.2/simple-sun-sky.js"></script>-->
+
+  </head>
+  <body>
+    <a-scene background="color: #ECECEC" loading-screen="dotsColor: green; backgroundColor: black">
+        <a-sky color="black"></a-sky>
+      
+        <a-assets timeout="20000">
+            <a-asset-item id="model1" src="./assets/apollon.glb"></a-asset-item>
+            <img id="tilefloor" src="./assets/TexturesCom_FloorsRegular0200_1_seamless_S.jpg">
+        </a-assets>
+        <a-entity id="rig"
+          movement-controls
+          position="-42 0 0"
+          rotation="0 -90 0">
+            <a-entity camera
+            position="0 1.6 0"
+            look-controls="pointerLockEnabled: true"></a-entity>
+        </a-entity>
+        
+<!--        model -->
+        <a-entity id="3dmodel" gltf-model="#model1" rotation="-90 90 0" position="10.4 14.375 .8" scale="2 2 2" 
+                  shadow="cast: true; receive: true" side="double" ></a-entity>
+
+        
+<!--        Floor -->
+        <a-plane material="color: #FFFFFF;
+                           src: #tilefloor;
+                           repeat: 95 15"
+                 rotation="-90 0 0"
+                 scale="95 15 1"
+                 position="0 .1 0"
+                >
+        </a-plane>
+<!--        lighting -->
+        <a-light type="ambient" color="#FFFFFF" castShadow="true"></a-light>
+        <a-light id="ceilinglight" type="spot" intensity="1" decay=".5" position="2.33 0 -1.9" angle="90" distance="30" rotation="0 0 0" target="#up" light="castShadow: true" >
+            <a-entity id="up" position="0 1 0"></a-entity>
+        </a-light>
+        
+        <a-light id="ceilinglight2" type="spot" intensity="1" decay=".5" position="29 0 3.5" angle="90" distance="30" rotation="0 0 0" target="#up2" light="castShadow: true" >
+            <a-entity id="up2" position="0 1 0"></a-entity>
+        </a-light>
+        
+        <a-light id="ceilinglight3" type="spot" intensity="1" decay=".5" position="-29 0 3.5" angle="90" distance="30" rotation="0 0 0" target="#up3" light="castShadow: true" >
+            <a-entity id="up3" position="0 1 0"></a-entity>
+        </a-light>
+
+    </a-scene>
+  </body>
+</html>
